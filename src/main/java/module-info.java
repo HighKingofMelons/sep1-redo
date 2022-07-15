@@ -6,5 +6,8 @@ module com.example.redoagaon {
     requires com.dlsc.formsfx;
 
     opens app to javafx.fxml;
+    opens app.models to javafx.fxml;
+    opens app.viewmodels to javafx.fxml;
+    opens app.views to javafx.fxml;
     exports app;
 }
