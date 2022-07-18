@@ -1,5 +1,6 @@
 package app.models;
 
+import app.utils.Exporter;
 import app.utils.ItemType;
 
 import java.util.ArrayList;
@@ -50,7 +51,11 @@ public class Inventory implements Main, AddItem {
 
     }
 
+    /**
+     * Loads saved items, if they exist
+     * @return Saved items
+     */
     private ArrayList<Item> load() {
-
+        return Exporter.loadSave();
     }
 }
