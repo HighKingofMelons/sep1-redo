@@ -1,11 +1,13 @@
 package app.models;
 
+import app.utils.ItemType;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.time.LocalDate;
 
 
-public class Item
+public abstract class Item
 {
   private String borrowerEmail;
   private Date returnDate;
