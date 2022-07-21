@@ -1,13 +1,14 @@
 package app.models;
 
 import app.utils.ItemType;
+import app.utils.PropertyChangeSubject;
 
 import java.util.ArrayList;
 
 /**
  * Interface mainly for MainViewModel to interact with Inventory
  */
-public interface Main {
+public interface Main extends PropertyChangeSubject {
     /**
      * Searches through all items in inventory and returns matching results
      * @param query The item's title to search for

@@ -3,13 +3,17 @@ package app.models;
 import app.utils.Exporter;
 import app.utils.ItemType;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 public class Inventory implements Main, AddItem {
+    private PropertyChangeSupport pcs;
     private final ArrayList<Item> items;
 
     public Inventory() {
         //TODO: add modelfactory
+        pcs = new PropertyChangeSupport(this);
         items = new ArrayList<>(load());
     }
 
@@ -57,5 +61,19 @@ public class Inventory implements Main, AddItem {
      */
     private ArrayList<Item> load() {
         return Exporter.loadSave();
+    }
+
+    @Override
+    public void addPropertyChangeListener(String propertyName, PropertyChangeListener propertyChangeListener) {
+        pcs.addPropertyChangeListener(propertyName, propertyChangeListener);
+    }
+
+    @Override
+    public void removePropertyChangeListener(String propertyName, PropertyChangeListener propertyChangeListener) {
+        pcs.removePropertyChangeListener(propertyName, propertyChangeListener);
+    }
+
+    private void firePropertyChange (String propertyName, Object oldValue, Object newValue) {
+        pcs.firePropertyChange(propertyName, oldValue, newValue);
     }
 }

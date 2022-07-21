@@ -1,9 +1,11 @@
 package app.models;
 
+import app.utils.PropertyChangeSubject;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public interface SidebarItem {
+public interface SidebarItem extends PropertyChangeSubject {
     /**
      * Return the Item's title
      * @return a String of the Item's title
