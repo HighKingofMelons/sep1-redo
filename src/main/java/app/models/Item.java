@@ -1,6 +1,8 @@
 package app.models;
 
+import app.utils.ChangeType;
 import app.utils.ItemType;
+import app.utils.ListChange;
 import app.utils.PropertyChangeSubject;
 
 import java.beans.PropertyChangeListener;
@@ -34,9 +36,11 @@ public abstract class Item implements SidebarItem
     this.type = type;
     this.dateAddedToLibrary = dateAddedToLibrary;
   }
-  public void addResevation(String email){
-    if (!reservations.contains(email))
+  public void addResevation(String email) {
+    if (!reservations.contains(email)) {
       reservations.add(email);
+      firePropertyChange("reservations", null, new ListChange(ChangeType.ADD, email));
+    }
   }
 
   public void borrow(String email, boolean isTeacher){
@@ -104,6 +108,12 @@ public abstract class Item implements SidebarItem
     pcs.removePropertyChangeListener(propertyName, propertyChangeListener);
   }
 
+  /**
+   * Notifies relevant listeners to changes for a given property
+   * @param propertyName a String of the changed variable/property's name
+   * @param oldValue the previous value, if the change is to a list this should be set to null
+   * @param newValue the new value, if the change is to a list pass a ListChange object here
+   */
   protected void firePropertyChange (String propertyName, Object oldValue, Object newValue) {
     pcs.firePropertyChange(propertyName, oldValue, newValue);
   }

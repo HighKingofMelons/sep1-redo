@@ -1,6 +1,8 @@
 package app.views;
 
 import app.ViewHandler;
+import app.models.CD;
+import app.models.Item;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -22,7 +24,7 @@ public class MainView {
 
     @FXML
     private void onButton (ActionEvent event) {
-        viewHandler.switchText();
+        viewHandler.switchSidebarItem(new CD("Test2"));
         viewHandler.openAddItemView();
     }
 }

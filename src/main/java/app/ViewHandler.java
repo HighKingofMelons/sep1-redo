@@ -1,5 +1,6 @@
 package app;
 
+import app.models.SidebarItem;
 import app.views.MainView;
 import app.views.SidebarView;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +39,7 @@ public class ViewHandler {
         mainView = mainLoader.getController();
         sidebarView = sidebarLoader.getController();
         mainView.init(this, sidebarScene);
+        sidebarView.init(this, viewModelFactory.makeSidebarViewModel());
 
         mainStage.setScene(mainScene);
         mainStage.show();
@@ -55,11 +57,20 @@ public class ViewHandler {
         }
 
         Stage addItemStage = new Stage();
+        addItemStage.initOwner(mainStage);
         addItemStage.setScene(addItemScene);
         addItemStage.show();
     }
 
-    public void switchText() {
-        sidebarView.text("Wow i did it!");
+    public void openLoanOutView() {
+        System.out.println("Imagine this is the loan out view");
+    }
+
+    public void openReservationView() {
+        System.out.println("Imagine this is the reservation view");
+    }
+
+    public void switchSidebarItem(SidebarItem item) {
+        sidebarView.setModel(item);
     }
 }

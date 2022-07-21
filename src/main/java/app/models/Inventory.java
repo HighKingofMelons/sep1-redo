@@ -1,7 +1,9 @@
 package app.models;
 
+import app.utils.ChangeType;
 import app.utils.Exporter;
 import app.utils.ItemType;
+import app.utils.ListChange;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -25,12 +27,14 @@ public class Inventory implements Main, AddItem {
     @Override
     public void removeItem(Item item) {
         items.remove(item);
+        firePropertyChange("items", null, new ListChange(ChangeType.REMOVE, item));
         save();
     }
 
     @Override
     public void addItem(Item item) {
         items.add(item);
+        firePropertyChange("items", null, new ListChange(ChangeType.ADD, item));
         save();
     }
 
@@ -73,6 +77,12 @@ public class Inventory implements Main, AddItem {
         pcs.removePropertyChangeListener(propertyName, propertyChangeListener);
     }
 
+    /**
+     * Notifies relevant listeners to changes for a given property
+     * @param propertyName a String of the changed variable/property's name
+     * @param oldValue the previous value, if the change is to a list this should be set to null
+     * @param newValue the new value, if the change is to a list pass a ListChange object here
+     */
     private void firePropertyChange (String propertyName, Object oldValue, Object newValue) {
         pcs.firePropertyChange(propertyName, oldValue, newValue);
     }
