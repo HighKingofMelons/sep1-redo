@@ -6,7 +6,7 @@ import app.utils.ItemType;
 import java.util.ArrayList;
 
 public class Inventory implements Main, AddItem {
-    private ArrayList<Item> items;
+    private final ArrayList<Item> items;
 
     public Inventory() {
         //TODO: add modelfactory
@@ -48,7 +48,7 @@ public class Inventory implements Main, AddItem {
      * Saves currently loaded items to XML file
      */
     private void save() {
-
+        Exporter.saveItems(items);
     }
 
     /**
