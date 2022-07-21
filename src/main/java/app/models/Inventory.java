@@ -73,6 +73,12 @@ public class Inventory implements Main, AddItem {
         pcs.removePropertyChangeListener(propertyName, propertyChangeListener);
     }
 
+    /**
+     * Notifies relevant listeners to changes for a given property
+     * @param propertyName a String of the changed variable/property's name
+     * @param oldValue the previous value, if the change is to a list this should be set to null
+     * @param newValue the new value, if the change is to a list pass a ListChange object here
+     */
     private void firePropertyChange (String propertyName, Object oldValue, Object newValue) {
         pcs.firePropertyChange(propertyName, oldValue, newValue);
     }
