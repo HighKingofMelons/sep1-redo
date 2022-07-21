@@ -1,7 +1,9 @@
 package app.models;
 
+import app.utils.ChangeType;
 import app.utils.Exporter;
 import app.utils.ItemType;
+import app.utils.ListChange;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -25,12 +27,14 @@ public class Inventory implements Main, AddItem {
     @Override
     public void removeItem(Item item) {
         items.remove(item);
+        firePropertyChange("items", null, new ListChange(ChangeType.REMOVE, item));
         save();
     }
 
     @Override
     public void addItem(Item item) {
         items.add(item);
+        firePropertyChange("items", null, new ListChange(ChangeType.ADD, item));
         save();
     }
 

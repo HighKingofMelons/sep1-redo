@@ -1,6 +1,8 @@
 package app.models;
 
+import app.utils.ChangeType;
 import app.utils.ItemType;
+import app.utils.ListChange;
 import app.utils.PropertyChangeSubject;
 
 import java.beans.PropertyChangeListener;
@@ -34,9 +36,11 @@ public abstract class Item implements SidebarItem
     this.type = type;
     this.dateAddedToLibrary = dateAddedToLibrary;
   }
-  public void addResevation(String email){
-    if (!reservations.contains(email))
+  public void addResevation(String email) {
+    if (!reservations.contains(email)) {
       reservations.add(email);
+      firePropertyChange("reservations", null, new ListChange(ChangeType.ADD, email));
+    }
   }
 
   public void borrow(String email, boolean isTeacher){
