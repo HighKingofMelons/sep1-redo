@@ -55,6 +55,7 @@ public class ViewHandler {
         }
 
         Stage addItemStage = new Stage();
+        addItemStage.initOwner(mainStage);
         addItemStage.setScene(addItemScene);
         addItemStage.show();
     }
