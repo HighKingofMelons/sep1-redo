@@ -7,7 +7,7 @@ import java.util.Date;
 import java.time.LocalDate;
 
 
-public abstract class Item
+public abstract class Item implements SidebarItem
 {
   private String borrowerEmail;
   private LocalDate returnDate;
@@ -43,7 +43,6 @@ public abstract class Item
   }
   public void removeReservation(String email){
     reservations.remove(email);
-
   }
   public boolean isReserving (String email){
     return reservations.contains(email);
@@ -85,4 +84,8 @@ public abstract class Item
     return borrowerEmail;
   }
 
+  @Override
+  public void returnItem() {
+    //empty for now
+  }
 }
