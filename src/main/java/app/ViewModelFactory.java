@@ -13,11 +13,16 @@ public class ViewModelFactory {
     }
 
     public SidebarViewModel makeSidebarViewModel () {
+        ArrayList<String> emails = new ArrayList<>();
+        emails.add("test@email.seven");
+        emails.add("test@email.six");
+        emails.add("test@email.four");
+
         CD test = new CD(
                 "testemail@what.no",
                 LocalDate.now().plusMonths(3),
                 "Test1",
-                new ArrayList<String>(),
+                emails,
                 LocalDate.now().minusMonths(1)
         );
 

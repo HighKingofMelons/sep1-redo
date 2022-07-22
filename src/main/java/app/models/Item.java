@@ -70,7 +70,10 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
 
   public ArrayList<String> getReservations()
   {
-    return reservations;
+    if (reservations != null)
+      return (ArrayList<String>) reservations.clone();
+    else
+      return null;
   }
 
   public LocalDate getDateAddedToLibrary()
