@@ -9,8 +9,8 @@ import app.utils.ItemType;
 
 public class Article extends Item
 {
-  private String author;
-  private String magazine;
+  private final String author;
+  private final String magazine;
 
 
   public Article(String title, String author, String magazine){

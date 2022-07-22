@@ -5,5 +5,5 @@ import java.util.Date;
 
 public interface LoanItem
 {
-  public void borrow(String email, LocalDate returntime);
+  void borrow(String email, boolean isTeacher);
 }

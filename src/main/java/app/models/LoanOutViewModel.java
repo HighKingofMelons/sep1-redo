@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class LoanOutViewModel
 {
-  private LoanItem model;
+  private final LoanItem model;
 
   public LoanOutViewModel(LoanItem model){
     this.model = model;

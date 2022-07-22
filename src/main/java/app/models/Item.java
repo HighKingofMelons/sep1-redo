@@ -13,13 +13,13 @@ import java.time.LocalDate;
 
 public abstract class Item implements SidebarItem
 {
-  private PropertyChangeSupport pcs;
+  private final PropertyChangeSupport pcs;
   private String borrowerEmail;
   private LocalDate returnDate;
-  private String title;
+  private final String title;
   private ArrayList<String> reservations;
-  private LocalDate dateAddedToLibrary;
-  private ItemType type;
+  private final LocalDate dateAddedToLibrary;
+  private final ItemType type;
 
   public Item(ItemType type, String title){
     pcs = new PropertyChangeSupport(this);
