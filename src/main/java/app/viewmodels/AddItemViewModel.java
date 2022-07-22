@@ -1,7 +1,6 @@
 package app.viewmodels;
 
 import app.models.*;
-import app.models.interfaces.AddItem;
 
 /**
  * ViewModel class that talks to the model on behalf of AddView
