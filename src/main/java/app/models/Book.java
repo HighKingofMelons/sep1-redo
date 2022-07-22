@@ -21,6 +21,19 @@ public class Book extends Item
     this.ISBN = ISBN;
   }
 
+  public void borrow(String email, boolean isTeacher){
+    if (super.getBorrowerEmail() != null)
+      return;
+
+    LocalDate returnDate = LocalDate.now();
+    if (isTeacher) {
+      super.setReturnDate(returnDate.plusMonths(6));
+    } else {
+      super.setReturnDate(returnDate.plusMonths(1));
+    }
+    super.setBorrowerEmail(email);
+  }
+
   public String getAuthor()
   {
     return author;

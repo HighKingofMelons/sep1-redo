@@ -10,9 +10,7 @@ public class LoanOutViewModel
     this.model = model;
   }
 
-  public void LoanOut(String email, boolean IsLecturer){
-    if(IsLecturer = true){
-      model.borrow(email, LocalDate.now().plusMonths(1));
-    }
+  public void LoanOut(String email, boolean isLecturer){
+    model.borrow(email, isLecturer);
   }
 }

@@ -25,6 +25,14 @@ public class Article extends Item
     this.magazine = magazine;
   }
 
+  public void borrow(String email, boolean isTeacher){
+    if (super.getBorrowerEmail() != null)
+      return;
+
+    super.setReturnDate(LocalDate.now().plusWeeks(2));
+    super.setBorrowerEmail(email);
+  }
+
   public String getAuthor()
   {
     return author;
