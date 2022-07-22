@@ -1,16 +1,18 @@
 package app.models;
 
-import app.models.interfaces.LoanItem;
+import java.time.LocalDate;
 
 public class LoanOutViewModel
 {
-  private final LoanItem model;
+  private LoanItem model;
 
   public LoanOutViewModel(LoanItem model){
     this.model = model;
   }
 
-  public void LoanOut(String email, boolean isLecturer){
-    model.borrow(email, isLecturer);
+  public void LoanOut(String email, boolean IsLecturer){
+    if(IsLecturer = true){
+      model.borrow(email, LocalDate.now().plusMonths(1));
+    }
   }
 }
