@@ -1,6 +1,6 @@
 package app.models;
 
-import java.time.LocalDate;
+import app.models.interfaces.LoanItem;
 
 public class LoanOutViewModel
 {

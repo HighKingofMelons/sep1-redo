@@ -1,11 +1,10 @@
 package app.viewmodels;
 
-import app.models.SidebarItem;
+import app.models.interfaces.SidebarItem;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 
 public class SidebarViewModel {

@@ -11,4 +11,5 @@ module com.example.redoagaon {
     opens app.viewmodels to javafx.fxml;
     opens app.views to javafx.fxml;
     exports app;
+    opens app.models.interfaces to javafx.fxml;
 }

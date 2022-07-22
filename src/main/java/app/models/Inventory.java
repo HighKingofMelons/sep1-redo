@@ -1,5 +1,7 @@
 package app.models;
 
+import app.models.interfaces.AddItem;
+import app.models.interfaces.Main;
 import app.utils.ChangeType;
 import app.utils.Exporter;
 import app.utils.ItemType;

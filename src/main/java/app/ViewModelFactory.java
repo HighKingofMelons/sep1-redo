@@ -1,7 +1,6 @@
 package app;
 
 import app.models.CD;
-import app.models.SidebarItem;
 import app.viewmodels.SidebarViewModel;
 
 import java.time.LocalDate;

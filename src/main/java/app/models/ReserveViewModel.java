@@ -1,5 +1,7 @@
 package app.models;
 
+import app.models.interfaces.ReserveItem;
+
 public class ReserveViewModel
 {
   private ReserveItem model;

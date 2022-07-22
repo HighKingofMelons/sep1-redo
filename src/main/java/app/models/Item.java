@@ -1,9 +1,11 @@
 package app.models;
 
+import app.models.interfaces.LoanItem;
+import app.models.interfaces.ReserveItem;
+import app.models.interfaces.SidebarItem;
 import app.utils.ChangeType;
 import app.utils.ItemType;
 import app.utils.ListChange;
-import app.utils.PropertyChangeSubject;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

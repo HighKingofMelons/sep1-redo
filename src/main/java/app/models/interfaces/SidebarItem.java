@@ -1,4 +1,4 @@
-package app.models;
+package app.models.interfaces;
 
 import app.utils.PropertyChangeSubject;
 

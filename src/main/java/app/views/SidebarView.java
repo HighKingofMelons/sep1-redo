@@ -1,15 +1,12 @@
 package app.views;
 
 import app.ViewHandler;
-import app.models.SidebarItem;
+import app.models.interfaces.SidebarItem;
 import app.viewmodels.SidebarViewModel;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
-import javax.swing.event.ChangeEvent;
 
 public class SidebarView {
     @FXML
