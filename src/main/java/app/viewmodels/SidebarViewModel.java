@@ -13,11 +13,11 @@ import java.util.Collections;
 
 public class SidebarViewModel {
     private SidebarItem model;
-    private SimpleStringProperty title;
-    private SimpleStringProperty borrowerEmail;
-    private SimpleStringProperty dueDateString;
-    private SimpleBooleanProperty isBorrowed;
-    private SimpleListProperty<String> reservationList;
+    private final SimpleStringProperty title;
+    private final SimpleStringProperty borrowerEmail;
+    private final SimpleStringProperty dueDateString;
+    private final SimpleBooleanProperty isBorrowed;
+    private final SimpleListProperty<String> reservationList;
 
     private boolean isEmpty;
 
@@ -117,12 +117,8 @@ public class SidebarViewModel {
         ListChange listChange = (ListChange) event.getNewValue();
 
         switch (listChange.getChangeType()) {
-            case ADD:
-                reservationList.add((String) listChange.getChangedObject());
-                break;
-
-            case REMOVE:
-                reservationList.remove((String) listChange.getChangedObject());
+            case ADD -> reservationList.add((String) listChange.getChangedObject());
+            case REMOVE -> reservationList.remove((String) listChange.getChangedObject());
         }
     }
 
