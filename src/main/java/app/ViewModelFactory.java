@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ViewModelFactory {
-    ModelFactory modelFactory;
+    private ModelFactory modelFactory;
     public ViewModelFactory (ModelFactory mf) {
         modelFactory = mf;
     }

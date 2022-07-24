@@ -3,7 +3,7 @@ package app;
 import app.models.Inventory;
 
 public class ModelFactory {
-    Inventory inventory;
+    private Inventory inventory;
     public ModelFactory() {
         inventory = new Inventory();
     }
