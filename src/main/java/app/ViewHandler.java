@@ -21,7 +21,7 @@ public class ViewHandler {
         viewModelFactory = vmf;
         mainStage = stage;
 
-        URL mainfxml = getClass().getResource("/app/main-view.fxml");
+        URL mainfxml = getClass().getResource("/app/mainView.fxml");
         URL sidebarfxml = getClass().getResource("/app/sidebar-view.fxml");
 
         FXMLLoader mainLoader = new FXMLLoader(mainfxml);
