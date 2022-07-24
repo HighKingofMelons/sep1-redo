@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.SubScene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<Scene xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.views.MainView">
+    <VBox prefHeight="416.0" prefWidth="726.0">
+       <children>
+          <VBox prefHeight="44.0" prefWidth="625.0">
+             <children>
+                <Separator prefHeight="7.0" prefWidth="625.0" visible="false" />
+                <HBox alignment="TOP_CENTER" prefHeight="35.0" prefWidth="625.0">
+                   <children>
+                      <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="10.0" visible="false" />
+                      <Button fx:id="addButton" mnemonicParsing="false" onMouseClicked="#onAddButton" text="ADD" />
+                      <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="10.0" visible="false" />
+                      <Button fx:id="removeButton" mnemonicParsing="false" onMouseClicked="#onRemoveButton" text="REMOVE" />
+                      <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="10.0" visible="false" />
+                      <TextField fx:id="queryField" prefHeight="25.0" prefWidth="277.0" promptText="Query" />
+                      <Separator layoutX="133.0" layoutY="10.0" orientation="VERTICAL" prefHeight="35.0" prefWidth="10.0" visible="false" />
+                      <ChoiceBox fx:id="filterDropdown" prefHeight="25.0" prefWidth="126.0" />
+                      <Separator layoutX="62.0" layoutY="10.0" orientation="VERTICAL" prefHeight="35.0" prefWidth="10.0" visible="false" />
+                      <Button fx:id="searchButton" mnemonicParsing="false" onMouseClicked="#onSearchButton" text="SEARCH" />
+                   </children>
+                </HBox>
+             </children>
+          </VBox>
+          <VBox prefHeight="373.0" prefWidth="625.0">
+             <children>
+                <Separator prefHeight="10.0" prefWidth="625.0" visible="false" />
+                <HBox prefHeight="356.0" prefWidth="697.0">
+                   <children>
+                      <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
+                      <TableView fx:id="itemsTable" prefHeight="355.0" prefWidth="493.0">
+                        <columns>
+                            <TableColumn fx:id="statusColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Status" />
+                            <TableColumn fx:id="titleColumn" prefWidth="69.33331298828125" text="Title" />
+                            <TableColumn fx:id="typeColumn" prefWidth="52.666656494140625" text="Type" />
+                            <TableColumn fx:id="authorColumn" prefWidth="91.33334350585938" text="Author" />
+                            <TableColumn fx:id="isbnColumn" prefWidth="59.33331298828125" text="ISBN" />
+                            <TableColumn fx:id="magazineColumn" prefWidth="115.33331298828125" text="Magazine" />
+                        </columns>
+                      </TableView>
+                      <Separator layoutX="10.0" layoutY="10.0" orientation="VERTICAL" prefHeight="200.0" visible="false" />
+                      <SubScene fx:id="sidebarView" height="356.0" width="216.0">
+                        <root>
+                          <Region />
+                        </root>
+                      </SubScene>
+                   </children>
+                </HBox>
+                <Separator layoutX="10.0" layoutY="371.0" prefHeight="10.0" prefWidth="625.0" visible="false" />
+             </children>
+          </VBox>
+       </children>
+    </VBox>
+</Scene>
