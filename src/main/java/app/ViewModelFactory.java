@@ -4,6 +4,8 @@ import app.models.CD;
 import app.models.interfaces.LoanItem;
 import app.models.interfaces.ReserveItem;
 import app.viewmodels.LoanOutViewModel;
+import app.models.interfaces.Main;
+import app.viewmodels.MainViewModel;
 import app.viewmodels.ReserveViewModel;
 import app.viewmodels.SidebarViewModel;
 
@@ -39,5 +41,9 @@ public class ViewModelFactory {
 
     public LoanOutViewModel loanOutViewModel (LoanItem item) {
         return new LoanOutViewModel(item);
+    }
+
+    public MainViewModel makeMainViewModel() {
+        return new MainViewModel(modelFactory.inventory, this);
     }
 }

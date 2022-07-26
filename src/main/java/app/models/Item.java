@@ -6,6 +6,7 @@ import app.models.interfaces.SidebarItem;
 import app.utils.ChangeType;
 import app.utils.ItemType;
 import app.utils.ListChange;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -132,5 +133,61 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
    */
   protected void firePropertyChange (String propertyName, Object oldValue, Object newValue) {
     pcs.firePropertyChange(propertyName, oldValue, newValue);
+  }
+
+  public SimpleStringProperty getField(String field) {
+    switch (field) {
+      case "title" -> {
+        return new SimpleStringProperty(title);
+      }
+      case "type" -> {
+        return switch (type) {
+          case Book -> new SimpleStringProperty("Book");
+          case Article -> new SimpleStringProperty("Article");
+          case CD -> new SimpleStringProperty("CD");
+          case DVD -> new SimpleStringProperty("DVD");
+        };
+      }
+      case "status" -> {
+        if (returnDate != null) {
+          if (LocalDate.now().plusDays(2).isAfter(returnDate)) {
+            return new SimpleStringProperty("LATE");
+          } else if (LocalDate.now().plusDays(-4).isAfter(returnDate)) {
+            return new SimpleStringProperty("SOON");
+          }
+        }
+        return new SimpleStringProperty("OK");
+      }
+      case "author" -> {
+        if (type == ItemType.Book) {
+          return new SimpleStringProperty(
+                  ((Book) this).getAuthor()
+          );
+        } else if (type == ItemType.Article) {
+          return new SimpleStringProperty(
+                  ((Article) this).getAuthor()
+          );
+        }
+        return new SimpleStringProperty("---");
+      }
+      case "isbn" -> {
+        if (type == ItemType.Book) {
+          return new SimpleStringProperty(
+                  ((Book) this).getISBN()
+          );
+        }
+        return new SimpleStringProperty("---");
+      }
+      case "magazine" -> {
+        if (type == ItemType.Article) {
+          return new SimpleStringProperty(
+                  ((Article) this).getMagazine()
+          );
+        }
+        return new SimpleStringProperty("---");
+      }
+    }
+
+    return new SimpleStringProperty("BROKEN!");
   }
 }

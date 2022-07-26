@@ -45,7 +45,7 @@ public class ViewHandler {
 
         mainView = mainLoader.getController();
         sidebarView = sidebarLoader.getController();
-        mainView.init(this, sidebarParent);
+        mainView.init(this, sidebarParent, viewModelFactory.makeMainViewModel());
         sidebarView.init(this, viewModelFactory.makeSidebarViewModel());
 
         mainStage.setScene(mainScene);

@@ -4,6 +4,7 @@ import app.ViewModelFactory;
 import app.models.Item;
 import app.models.interfaces.Main;
 import app.utils.ItemType;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -16,7 +17,8 @@ import java.util.ArrayList;
 public class MainViewModel{
     private Main model;
     private ViewModelFactory vmf;
-    private ObservableList<Item> items;
+    //private final ObservableList<Item> items;
+    private final SimpleListProperty<Item> items;
     // for filtering
     private ItemType curFilter; // current filter
     private String filterStr; // current query
@@ -24,7 +26,7 @@ public class MainViewModel{
     public MainViewModel(Main model, ViewModelFactory vmf) {
         this.model = model;
         this.vmf = vmf;
-        items = FXCollections.observableArrayList();
+        items = new SimpleListProperty<>();
         curFilter = null;
         filterStr = "";
 
@@ -33,8 +35,11 @@ public class MainViewModel{
 
         // initial setup
         ArrayList<Item> allItems = this.model.getAllItems();
-        items.addAll(allItems);
+        //ObservableList<Item> itemz = FXCollections.observableList(allItems);
+        items.setValue(FXCollections.observableList(allItems));
     }
+
+    public SimpleListProperty<Item> getItems() {return items;}
 
     /**
      * Removes the item from the list
@@ -54,7 +59,7 @@ public class MainViewModel{
         curFilter = filter;
         filterStr = query;
         items.clear();
-        items.addAll(filtered);
+        items.setValue(FXCollections.observableList(filtered));
     }
 
     /**

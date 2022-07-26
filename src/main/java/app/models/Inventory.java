@@ -16,9 +16,9 @@ public class Inventory implements Main, AddItem {
     private final ArrayList<Item> items;
 
     public Inventory() {
-        //TODO: add modelfactory
         pcs = new PropertyChangeSupport(this);
         items = new ArrayList<>(load());
+        items.add(new Book("testBook", "tester", "123"));
     }
 
     @Override
