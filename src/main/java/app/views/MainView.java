@@ -4,6 +4,7 @@ import app.ViewHandler;
 import app.models.CD;
 import app.viewmodels.MainViewModel;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.*;
@@ -50,11 +51,11 @@ public class MainView {
     private ViewHandler viewHandler;
     private MainViewModel mainViewModel;
 
-    public void init(ViewHandler vh, Scene scene) {
+    public void init(ViewHandler vh, Parent sidebar) {
         // TODO: Add mainViewModel as parameter
         viewHandler = vh;
         //mainViewModel = mm;
-        //splitPane.getItems().set(1, scene.getRoot()); // what is this supposed to do?
+        sidebarView.setRoot(sidebar);
 
         // adding filter choice values
         filterDropdown.getItems().add("All");

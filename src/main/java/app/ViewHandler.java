@@ -4,6 +4,7 @@ import app.models.interfaces.SidebarItem;
 import app.views.MainView;
 import app.views.SidebarView;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -28,17 +29,17 @@ public class ViewHandler {
         FXMLLoader sidebarLoader = new FXMLLoader(sidebarfxml);
 
         Scene mainScene;
-        Scene sidebarScene;
+        Parent sidebarParent;
         try {
             mainScene = mainLoader.load();
-            sidebarScene = sidebarLoader.load();
+            sidebarParent = sidebarLoader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         mainView = mainLoader.getController();
         sidebarView = sidebarLoader.getController();
-        mainView.init(this, sidebarScene);
+        mainView.init(this, sidebarParent);
         sidebarView.init(this, viewModelFactory.makeSidebarViewModel());
 
         mainStage.setScene(mainScene);
