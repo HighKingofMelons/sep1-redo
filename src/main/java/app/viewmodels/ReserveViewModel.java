@@ -6,7 +6,7 @@ public class ReserveViewModel
 {
   private ReserveItem model;
 
-  public void ReserveViewModel(ReserveItem model){
+  public ReserveViewModel(ReserveItem model){
     this.model = model;
   }
 

@@ -65,10 +65,38 @@ public class ViewHandler {
 
     public void openLoanOutView() {
         System.out.println("Imagine this is the loan out view");
+        URL fxmlLocation = getClass().getResource("/app/loan-out-view.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+
+        Scene addItemScene;
+        try {
+            addItemScene = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Stage addItemStage = new Stage();
+        addItemStage.initOwner(mainStage);
+        addItemStage.setScene(addItemScene);
+        addItemStage.show();
     }
 
     public void openReservationView() {
         System.out.println("Imagine this is the reservation view");
+        URL fxmlLocation = getClass().getResource("/app/reserve-view.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+
+        Scene addItemScene;
+        try {
+            addItemScene = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Stage addItemStage = new Stage();
+        addItemStage.initOwner(mainStage);
+        addItemStage.setScene(addItemScene);
+        addItemStage.show();
     }
 
     public void switchSidebarItem(SidebarItem item) {
