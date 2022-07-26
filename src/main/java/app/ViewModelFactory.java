@@ -1,6 +1,9 @@
 package app;
 
 import app.models.CD;
+import app.models.interfaces.LoanItem;
+import app.models.interfaces.ReserveItem;
+import app.viewmodels.LoanOutViewModel;
 import app.viewmodels.ReserveViewModel;
 import app.viewmodels.SidebarViewModel;
 
@@ -30,20 +33,11 @@ public class ViewModelFactory {
         return new SidebarViewModel(test);
     }
 
-    public ReserveViewModel reserveViewModel () {
-        ArrayList<String> emails = new ArrayList<>();
-        emails.add("test@email.seven");
-        emails.add("test@email.six");
-        emails.add("test@email.four");
+    public ReserveViewModel reserveViewModel (ReserveItem item) {
+        return new ReserveViewModel(item);
+    }
 
-        CD test = new CD(
-            "testemail@what.no",
-            LocalDate.now().plusMonths(3),
-            "Test1",
-            emails,
-            LocalDate.now().minusMonths(1)
-        );
-
-        return new ReserveViewModel(test);
+    public LoanOutViewModel loanOutViewModel (LoanItem item) {
+        return new LoanOutViewModel(item);
     }
 }

@@ -110,7 +110,7 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
     borrowerEmail = null;
     returnDate = null;
     firePropertyChange("borrowerEmail", oldEmail, null);
-    firePropertyChange("oldDate", oldDate, null);
+    firePropertyChange("returnDate", oldDate, null);
   }
 
   @Override

@@ -1,7 +1,13 @@
 package app;
 
+import app.models.interfaces.LoanItem;
+import app.models.interfaces.ReserveItem;
 import app.models.interfaces.SidebarItem;
+import app.viewmodels.LoanOutViewModel;
+import app.viewmodels.ReserveViewModel;
+import app.views.LoanOutView;
 import app.views.MainView;
+import app.views.ReserveView;
 import app.views.SidebarView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -63,8 +69,7 @@ public class ViewHandler {
         addItemStage.show();
     }
 
-    public void openLoanOutView() {
-        System.out.println("Imagine this is the loan out view");
+    public void openLoanOutView(LoanItem item) {
         URL fxmlLocation = getClass().getResource("/app/loan-out-view.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
 
@@ -75,14 +80,15 @@ public class ViewHandler {
             throw new RuntimeException(e);
         }
 
+        LoanOutView loanOutView = fxmlLoader.getController();
+        loanOutView.init(this, viewModelFactory.loanOutViewModel(item));
         Stage addItemStage = new Stage();
         addItemStage.initOwner(mainStage);
         addItemStage.setScene(addItemScene);
         addItemStage.show();
     }
 
-    public void openReservationView() {
-        System.out.println("Imagine this is the reservation view");
+    public void openReservationView(ReserveItem item) {
         URL fxmlLocation = getClass().getResource("/app/reserve-view.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
 
@@ -93,6 +99,8 @@ public class ViewHandler {
             throw new RuntimeException(e);
         }
 
+        ReserveView reserveView = fxmlLoader.getController();
+        reserveView.init(this, viewModelFactory.reserveViewModel(item));
         Stage addItemStage = new Stage();
         addItemStage.initOwner(mainStage);
         addItemStage.setScene(addItemScene);

@@ -106,7 +106,6 @@ public class SidebarViewModel {
 
     public void onDueDateChange (PropertyChangeEvent event) {
         LocalDate newValue = (LocalDate) event.getNewValue();
-
         if (newValue != null)
             dueDateString.setValue(newValue.toString());
         else
@@ -125,5 +124,13 @@ public class SidebarViewModel {
     public void removeReservation (String email) {
         if (!isEmpty)
             model.removeReservation(email);
+    }
+
+    public SidebarItem getModel() {
+        return model;
+    }
+
+    public void returnItem() {
+        model.returnItem();
     }
 }

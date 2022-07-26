@@ -1,6 +1,8 @@
 package app.views;
 
 import app.ViewHandler;
+import app.models.interfaces.LoanItem;
+import app.models.interfaces.ReserveItem;
 import app.models.interfaces.SidebarItem;
 import app.viewmodels.SidebarViewModel;
 import javafx.event.ActionEvent;
@@ -50,11 +52,15 @@ public class SidebarView {
     }
 
     public void onLoanButton (ActionEvent event) {
-        viewHandler.openLoanOutView();
+        viewHandler.openLoanOutView((LoanItem) viewModel.getModel());
     }
 
     public void onAddReservationButton (ActionEvent event) {
-        viewHandler.openReservationView();
+        viewHandler.openReservationView((ReserveItem) viewModel.getModel());
+    }
+
+    public void onReturnButton (ActionEvent event) {
+        viewModel.returnItem();
     }
 
     public void onRemoveReservationButton (ActionEvent event) {
