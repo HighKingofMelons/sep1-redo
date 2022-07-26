@@ -2,7 +2,7 @@ package app.viewmodels;
 
 import app.ViewModelFactory;
 import app.models.Item;
-import app.models.Main;
+import app.models.interfaces.Main;
 import app.utils.ItemType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
