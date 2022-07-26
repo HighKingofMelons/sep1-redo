@@ -1,9 +1,11 @@
 package app.models;
 
+import app.models.interfaces.LoanItem;
+import app.models.interfaces.ReserveItem;
+import app.models.interfaces.SidebarItem;
 import app.utils.ChangeType;
 import app.utils.ItemType;
 import app.utils.ListChange;
-import app.utils.PropertyChangeSubject;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -11,15 +13,15 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 
 
-public abstract class Item implements SidebarItem
+public abstract class Item implements SidebarItem, LoanItem, ReserveItem
 {
-  private PropertyChangeSupport pcs;
+  private final PropertyChangeSupport pcs;
   private String borrowerEmail;
   private LocalDate returnDate;
-  private String title;
+  private final String title;
   private ArrayList<String> reservations;
-  private LocalDate dateAddedToLibrary;
-  private ItemType type;
+  private final LocalDate dateAddedToLibrary;
+  private final ItemType type;
 
   public Item(ItemType type, String title){
     pcs = new PropertyChangeSupport(this);
@@ -36,22 +38,15 @@ public abstract class Item implements SidebarItem
     this.type = type;
     this.dateAddedToLibrary = dateAddedToLibrary;
   }
-  public void addResevation(String email) {
+  public void addReservation(String email) {
     if (!reservations.contains(email)) {
       reservations.add(email);
       firePropertyChange("reservations", null, new ListChange(ChangeType.ADD, email));
     }
   }
-
-  public void borrow(String email, boolean isTeacher){
-    if (isTeacher = true){
-      borrowerEmail = email;
-      LocalDate returnDate = LocalDate.now().plusMonths(5);
-    }
-
-  }
   public void removeReservation(String email){
-    reservations.remove(email);
+    if (reservations.remove(email))
+      firePropertyChange("reservations", null, new ListChange(ChangeType.REMOVE, email));
   }
   public boolean isReserving (String email){
     return reservations.contains(email);
@@ -75,7 +70,10 @@ public abstract class Item implements SidebarItem
 
   public ArrayList<String> getReservations()
   {
-    return reservations;
+    if (reservations != null)
+      return (ArrayList<String>) reservations.clone();
+    else
+      return null;
   }
 
   public LocalDate getDateAddedToLibrary()
@@ -93,9 +91,26 @@ public abstract class Item implements SidebarItem
     return borrowerEmail;
   }
 
+  protected void setBorrowerEmail(String email) {
+    String oldEmail = borrowerEmail;
+    borrowerEmail = email;
+    firePropertyChange("borrowerEmail", oldEmail, borrowerEmail);
+  }
+
+  protected void setReturnDate(LocalDate date) {
+    LocalDate oldDate = returnDate;
+    returnDate = date;
+    firePropertyChange("oldDate", oldDate, returnDate);
+  }
+
   @Override
   public void returnItem() {
-    //empty for now
+    String oldEmail = borrowerEmail;
+    LocalDate oldDate = returnDate;
+    borrowerEmail = null;
+    returnDate = null;
+    firePropertyChange("borrowerEmail", oldEmail, null);
+    firePropertyChange("oldDate", oldDate, null);
   }
 
   @Override

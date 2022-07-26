@@ -1,6 +1,6 @@
 package app;
 
-import app.models.SidebarItem;
+import app.models.interfaces.SidebarItem;
 import app.views.MainView;
 import app.views.SidebarView;
 import javafx.fxml.FXMLLoader;

@@ -13,4 +13,20 @@ public class CD extends Item
     super(borrowerEmail, returnDate, title, reservations, ItemType.CD,
         dateAddedToLibrary);
   }
+
+  public void borrow(String email, boolean isTeacher){
+    if (super.getBorrowerEmail() != null)
+      return;
+
+    LocalDate returnDate = LocalDate.now();
+    if (super.getDateAddedToLibrary().isAfter(LocalDate.now().minusYears(1))) {
+      super.setReturnDate(returnDate.plusWeeks(2));
+    }
+    else if (isTeacher) {
+      super.setReturnDate(returnDate.plusMonths(6));
+    } else {
+      super.setReturnDate(returnDate.plusMonths(1));
+    }
+    super.setBorrowerEmail(email);
+  }
 }

@@ -9,8 +9,8 @@ import app.utils.ItemType;
 
 public class Article extends Item
 {
-  private String author;
-  private String magazine;
+  private final String author;
+  private final String magazine;
 
 
   public Article(String title, String author, String magazine){
@@ -23,6 +23,14 @@ public class Article extends Item
         dateAddedToLibrary);
     this.author = author;
     this.magazine = magazine;
+  }
+
+  public void borrow(String email, boolean isTeacher){
+    if (super.getBorrowerEmail() != null)
+      return;
+
+    super.setReturnDate(LocalDate.now().plusWeeks(2));
+    super.setBorrowerEmail(email);
   }
 
   public String getAuthor()

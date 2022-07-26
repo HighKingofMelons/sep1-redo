@@ -1,5 +1,6 @@
-package app.models;
+package app.models.interfaces;
 
+import app.models.Item;
 import app.utils.ItemType;
 import app.utils.PropertyChangeSubject;
 
