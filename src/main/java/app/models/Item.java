@@ -94,13 +94,14 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
   protected void setBorrowerEmail(String email) {
     String oldEmail = borrowerEmail;
     borrowerEmail = email;
+    removeReservation(email);
     firePropertyChange("borrowerEmail", oldEmail, borrowerEmail);
   }
 
   protected void setReturnDate(LocalDate date) {
     LocalDate oldDate = returnDate;
     returnDate = date;
-    firePropertyChange("oldDate", oldDate, returnDate);
+    firePropertyChange("returnDate", oldDate, returnDate);
   }
 
   @Override
