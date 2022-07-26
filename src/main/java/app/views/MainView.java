@@ -1,21 +1,21 @@
 package app.views;
 
 import app.ViewHandler;
-import app.models.CD;
+import app.models.Item;
+import app.utils.ItemType;
 import app.viewmodels.MainViewModel;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.*;
 
-import javafx.event.ActionEvent;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 
 public class MainView {
-    /*@FXML
-    private SplitPane splitPane;
-     */
     // topbar
     @FXML
     private Button addButton;
@@ -30,19 +30,19 @@ public class MainView {
 
     // items list
     @FXML
-    private TableView<String> itemsTable;
+    private TableView<Item> itemsTable;
     @FXML
-    private TableColumn<String, String> statusColumn;
+    private TableColumn<Item, String> statusColumn;
     @FXML
-    private TableColumn<String, String> titleColumn;
+    private TableColumn<Item, String> titleColumn;
     @FXML
-    private TableColumn<String, String> typeColumn;
+    private TableColumn<Item, String> typeColumn;
     @FXML
-    private TableColumn<String, String> authorColumn;
+    private TableColumn<Item, String> authorColumn;
     @FXML
-    private TableColumn<String, String> isbnColumn;
+    private TableColumn<Item, String> isbnColumn;
     @FXML
-    private TableColumn<String, String> magazineColumn;
+    private TableColumn<Item, String> magazineColumn;
 
     // sidebar
     @FXML
@@ -51,10 +51,9 @@ public class MainView {
     private ViewHandler viewHandler;
     private MainViewModel mainViewModel;
 
-    public void init(ViewHandler vh, Parent sidebar) {
-        // TODO: Add mainViewModel as parameter
+    public void init(ViewHandler vh, Parent sidebar, MainViewModel mvm) {
         viewHandler = vh;
-        //mainViewModel = mm;
+        mainViewModel = mvm;
         sidebarView.setRoot(sidebar);
 
         // adding filter choice values
@@ -64,15 +63,25 @@ public class MainView {
         filterDropdown.getItems().add("CD");
         filterDropdown.getItems().add("DVD");
         filterDropdown.setValue("All"); // setting initial filter value
+
+        // binding items updates
+        itemsTable.itemsProperty().bind(mvm.getItems());
+
+        // setting column values
+        setColumnFactory(statusColumn, "status");
+        setColumnFactory(titleColumn, "title");
+        setColumnFactory(typeColumn, "type");
+        setColumnFactory(authorColumn, "author");
+        setColumnFactory(isbnColumn, "isbn");
+        setColumnFactory(magazineColumn, "magazine");
     }
 
-    /*
-    @FXML
-    private void onButton (ActionEvent event) {
-        viewHandler.switchSidebarItem(new CD("Test2"));
-        viewHandler.openAddItemView();
+    public void setColumnFactory(TableColumn<Item, String> col, String field) {
+        col.setCellValueFactory(p -> {
+            // p.getValue() returns the Person instance for a particular TableView row
+            return p.getValue().getField(field);
+        });
     }
-     */
 
     @FXML
     private void onAddButton(MouseEvent event) {
