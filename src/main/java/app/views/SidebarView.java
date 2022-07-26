@@ -39,10 +39,10 @@ public class SidebarView {
         returnButton.disableProperty().bind(viewModel.isBorrowedProperty().not());
         loanButton.disableProperty().bind(viewModel.isBorrowedProperty());
 
-        //reservationListView.itemsProperty().bind(viewModel.reservationListProperty());
-        //removeReservationButton.disableProperty().bind(
-        //        reservationListView.getSelectionModel().selectedItemProperty().isNull()
-        //);
+        reservationListView.itemsProperty().bind(viewModel.reservationListProperty());
+        removeReservationButton.disableProperty().bind(
+                reservationListView.getSelectionModel().selectedItemProperty().isNull()
+        );
     }
 
     public void setModel (SidebarItem model) {
