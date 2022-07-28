@@ -12,8 +12,8 @@
 <Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.views.LoanOutView">
     <AnchorPane prefHeight="201.0" prefWidth="399.0">
       <children>
-         <TextField fx:id="emailTextField" layoutX="79.0" layoutY="121.0" />
-         <Button layoutX="311.0" layoutY="121.0" mnemonicParsing="false" onAction="#onLoanOut" text="Button" />
+         <TextField fx:id="emailTextField" onKeyTyped="#onType" layoutX="79.0" layoutY="121.0" />
+         <Button fx:id="addButton" layoutX="311.0" layoutY="121.0" mnemonicParsing="false" onAction="#onLoanOut" text="Button" />
          <Text layoutX="60.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write the mail of the loaner" wrappingWidth="221.478515625">
             <font>
                <Font size="16.0" />

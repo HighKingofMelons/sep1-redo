@@ -10,8 +10,8 @@
 <Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.views.ReserveView">
     <AnchorPane prefHeight="201.0" prefWidth="399.0">
         <children>
-            <TextField fx:id="emailTextField" layoutX="79.0" layoutY="121.0" />
-            <Button layoutX="311.0" layoutY="121.0" mnemonicParsing="false" onAction="#onReserve" text="Button" />
+            <TextField fx:id="emailTextField" onKeyTyped="#onType" layoutX="79.0" layoutY="121.0" />
+            <Button fx:id="addButton" layoutX="311.0" layoutY="121.0" mnemonicParsing="false" onAction="#onReserve" text="Button" />
             <Text layoutX="72.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write the mail of the reservee" wrappingWidth="221.478515625">
                 <font>
                     <Font size="16.0" />

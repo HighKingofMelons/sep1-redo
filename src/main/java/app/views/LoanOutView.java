@@ -3,9 +3,11 @@ package app.views;
 import app.ViewHandler;
 import app.viewmodels.LoanOutViewModel;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 import javax.swing.*;
 
@@ -23,22 +25,22 @@ public class LoanOutView
 
   @FXML
   private Label labelFeedback;
+  @FXML
+  private Button addButton;
 
   public void init(ViewHandler vh, LoanOutViewModel vm){
     viewHandler = vh;
     loanOutViewModel = vm;
 
+    onType(null);
   }
-
 
   public void onLoanOut(javafx.event.ActionEvent actionEvent)
   {
-    if (checkBoxTeacher.isSelected()){
-      loanOutViewModel.LoanOut(emailTextField.getText(), true);
-      labelFeedback.setText("Succes");
-    }
-    else{
-      labelFeedback.setText("Only teachers can loan out");
-    }
+    loanOutViewModel.LoanOut(emailTextField.getText(), checkBoxTeacher.isSelected());
+  }
+
+  public void onType (KeyEvent event) {
+    addButton.setDisable(emailTextField.getText().length() < 1);
   }
 }
