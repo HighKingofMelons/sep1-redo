@@ -13,14 +13,20 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.StringWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Exporter {
-    private static final String saveLocation = "";
+    private static final String saveLocation = "exportedData.save";
 
     /**
      * Loads saved data from a predefined path
@@ -40,7 +46,7 @@ public abstract class Exporter {
                 try {
                     contents = builder.parse(file);
                 } catch (SAXException exc) {
-                    System.out.println("Saved file is corrupt!");
+                    System.out.println("Saved file is corrupt! (File parsing)");
                     System.out.println("Save filepath: "+saveLocation);
                     System.out.println(exc.getMessage());
                     return loaded;
@@ -49,7 +55,7 @@ public abstract class Exporter {
                 System.out.println("Saved file not found!");
             }
         } catch (Exception e) {
-            System.out.println("Error occoured while loading save!");
+            System.out.println("Error occoured while loading save! (Other file error)");
             System.out.println("Save filepath: "+saveLocation);
             System.out.println(e.getMessage());
             return loaded;
@@ -76,8 +82,8 @@ public abstract class Exporter {
             for (int i=0; i< articleElems.getLength(); i++) {
                 HashMap<String,Object> fields = getAllFields(articleElems.item(i));
                 loaded.add(new Article(
-                        (String) fields.get("BorrowerEmail"), (LocalDate) fields.get("ReturnDate"), (String) fields.get("Title"),
-                        (ArrayList<String>) fields.get("Reservations"), (LocalDate) fields.get("DateAdded"),
+                        (String) fields.get("BorrowerEmail"), (LocalDate)fields.get("ReturnDate"), (String) fields.get("Title"),
+                        (ArrayList<String>) fields.get("Reservations"), (LocalDate)fields.get("DateAdded"),
                         (String) fields.get("Author"), (String) fields.get("Magazine"))
                 );
             }
@@ -102,7 +108,7 @@ public abstract class Exporter {
                 );
             }
         } catch (Exception e) {
-            System.out.println("Saved file is corrupt!");
+            System.out.println("Saved file is corrupt! (XML Error)");
             System.out.println("Save filepath: "+saveLocation);
             System.out.println(e.getMessage());
             return loaded;
@@ -124,7 +130,7 @@ public abstract class Exporter {
             DocumentBuilder builder = factory.newDocumentBuilder();
             document = builder.newDocument();
         } catch (Exception e) {
-            System.out.println("Error occoured while saving items!");
+            System.out.println("Error occoured while saving items! (XML Doc builder)");
             System.out.println("Save filepath: "+saveLocation);
             System.out.println(e.getMessage());
             return;
@@ -132,6 +138,7 @@ public abstract class Exporter {
         Element root =  document.createElement("ItemsInfo");
         document.appendChild(root);
 
+        // adding items to root
         for (Item item: items) {
             // creating item element
             Element itemElem = null;
@@ -205,19 +212,42 @@ public abstract class Exporter {
             itemElem.appendChild(reservationsElem);
         }
 
+        // converting Document to string (java why)
+        // https://stackoverflow.com/a/5456836
+        String xmlString;
+        try {
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer transformer = tf.newTransformer();
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+            StringWriter writer = new StringWriter();
+            transformer.transform(new DOMSource(document), new StreamResult(writer));
+            xmlString = writer.getBuffer().toString().replaceAll("\n|\r", "");
+        } catch (Exception e) {
+            System.out.println("Error occoured while saving items! (XML to String)");
+            System.out.println("Save filepath: "+saveLocation);
+            System.out.println(e.getMessage());
+            return;
+        }
+
+
         try {
             // create file in case it doesnt exist
             File savedFile = new File(saveLocation);
             savedFile.createNewFile(); // creating the new file in case it doesnt exist
 
             // saving the encoded xml
+            System.out.println("--- XML String to save ---");
+            System.out.println(xmlString);
             FileWriter writer = new FileWriter(saveLocation);
-            writer.write(document.getXmlEncoding());
+            writer.write(xmlString);
             writer.close();
         } catch (Exception e) {
-            System.out.println("Error occoured while saving items!");
+            System.out.println("Error occoured while saving items! (File writing)");
             System.out.println("Save filepath: "+saveLocation);
             System.out.println(e.getMessage());
+
+            System.out.println("--- XML String to save ---");
+            System.out.println(xmlString);
         }
     }
 
@@ -234,34 +264,34 @@ public abstract class Exporter {
             Node field = fields.item(i);
 
             switch (field.getNodeName()) {
-                case "Title" -> returnedValues.put("Title",field.getNodeValue());
-                case "Author" -> returnedValues.put("Author",field.getNodeValue());
-                case "Magazine" -> returnedValues.put("Magazine",field.getNodeValue());
-                case "ISBN" -> returnedValues.put("ISBN",field.getNodeValue());
+                case "Title" -> returnedValues.put("Title",field.getTextContent());
+                case "Author" -> returnedValues.put("Author",field.getTextContent());
+                case "Magazine" -> returnedValues.put("Magazine",field.getTextContent());
+                case "ISBN" -> returnedValues.put("ISBN",field.getTextContent());
                 case "Reservations" -> {
                     ArrayList<String> savedReservations = new ArrayList<>();
                     NodeList resList = field.getChildNodes();
                     for (int resI=0; i<resList.getLength(); i++) {
                         Node res = resList.item(resI);
-                        savedReservations.add(res.getNodeValue());
+                        savedReservations.add(res.getTextContent());
                     }
                     returnedValues.put("Reservations", savedReservations);
                 }
                 case "BorrowerEmail" -> {
-                    if (field.getNodeValue() != null)
-                        returnedValues.put("BorrowerEmail",field.getNodeValue());
+                    if (field.getTextContent() != null)
+                        returnedValues.put("BorrowerEmail",field.getTextContent());
                     else
                         returnedValues.put("BorrowerEmail",null);
                 }
                 case "ReturnDate" -> {
-                    if (field.getNodeValue() != null)
-                        returnedValues.put("ReturnDate",LocalDate.parse(field.getNodeValue()));
+                    if (field.getTextContent() != null)
+                        returnedValues.put("ReturnDate",LocalDate.parse(field.getTextContent()));
                     else
                         returnedValues.put("ReturnDate",null);
                 }
                 case "DateAdded" -> {
-                    if (field.getNodeValue() != null)
-                        returnedValues.put("DateAdded",LocalDate.parse(field.getNodeValue()));
+                    if (field.getTextContent() != null)
+                        returnedValues.put("DateAdded",LocalDate.parse(field.getTextContent()));
                     else
                         returnedValues.put("DateAdded",null);
                 }

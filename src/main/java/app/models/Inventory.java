@@ -18,7 +18,6 @@ public class Inventory implements Main, AddItem {
     public Inventory() {
         pcs = new PropertyChangeSupport(this);
         items = new ArrayList<>(load());
-        items.add(new Book("testBook", "tester", "123"));
     }
 
     @Override
