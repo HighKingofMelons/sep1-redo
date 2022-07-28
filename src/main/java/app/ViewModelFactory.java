@@ -3,11 +3,7 @@ package app;
 import app.models.CD;
 import app.models.interfaces.LoanItem;
 import app.models.interfaces.ReserveItem;
-import app.viewmodels.LoanOutViewModel;
-import app.models.interfaces.Main;
-import app.viewmodels.MainViewModel;
-import app.viewmodels.ReserveViewModel;
-import app.viewmodels.SidebarViewModel;
+import app.viewmodels.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -45,5 +41,9 @@ public class ViewModelFactory {
 
     public MainViewModel makeMainViewModel() {
         return new MainViewModel(modelFactory.inventory, this);
+    }
+
+    public AddItemViewModel makeAddItemViewModel() {
+        return new AddItemViewModel(modelFactory.inventory);
     }
 }

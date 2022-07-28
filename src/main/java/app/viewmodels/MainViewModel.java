@@ -6,7 +6,6 @@ import app.models.interfaces.Main;
 import app.utils.ItemType;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
@@ -58,7 +57,6 @@ public class MainViewModel{
         ArrayList<Item> filtered = model.searchItems(query, filter);
         curFilter = filter;
         filterStr = query;
-        items.clear();
         items.setValue(FXCollections.observableList(filtered));
     }
 

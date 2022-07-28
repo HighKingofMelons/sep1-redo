@@ -236,8 +236,6 @@ public abstract class Exporter {
             savedFile.createNewFile(); // creating the new file in case it doesnt exist
 
             // saving the encoded xml
-            System.out.println("--- XML String to save ---");
-            System.out.println(xmlString);
             FileWriter writer = new FileWriter(saveLocation);
             writer.write(xmlString);
             writer.close();
