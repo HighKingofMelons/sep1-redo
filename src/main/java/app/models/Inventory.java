@@ -20,6 +20,10 @@ public class Inventory implements Main, AddItem {
     public Inventory() {
         pcs = new PropertyChangeSupport(this);
         items = new ArrayList<>(load());
+        for (Item i: items ) {
+            i.addPropertyChangeListener("reservations", this::onItemChange);
+            i.addPropertyChangeListener("borrowerEmail", this::onItemChange);
+        }
     }
 
     @Override
