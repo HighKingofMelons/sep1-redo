@@ -269,7 +269,7 @@ public abstract class Exporter {
                 case "Reservations" -> {
                     ArrayList<String> savedReservations = new ArrayList<>();
                     NodeList resList = field.getChildNodes();
-                    for (int resI=0; i<resList.getLength(); i++) {
+                    for (int resI=0; resI<resList.getLength(); resI++) {
                         Node res = resList.item(resI);
                         savedReservations.add(res.getTextContent());
                     }
