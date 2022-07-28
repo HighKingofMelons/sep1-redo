@@ -27,10 +27,10 @@ public class ViewModelFactory {
     }
 
     public MainViewModel makeMainViewModel() {
-        return new MainViewModel(modelFactory.inventory, this);
+        return new MainViewModel(modelFactory.getInventory(), this);
     }
 
     public AddItemViewModel makeAddItemViewModel() {
-        return new AddItemViewModel(modelFactory.inventory);
+        return new AddItemViewModel(modelFactory.getInventory());
     }
 }
