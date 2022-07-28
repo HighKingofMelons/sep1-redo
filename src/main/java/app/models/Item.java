@@ -21,9 +21,10 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
   private String borrowerEmail;
   private LocalDate returnDate;
   private final String title;
-  private ArrayList<String> reservations;
+  private final ArrayList<String> reservations;
   private final LocalDate dateAddedToLibrary;
   private final ItemType type;
+  private SimpleStringProperty status;
 
   public Item(ItemType type, String title){
     pcs = new PropertyChangeSupport(this);
@@ -31,6 +32,14 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
     this.title = title;
     dateAddedToLibrary = LocalDate.now();
     reservations = new ArrayList<>();
+    status = new SimpleStringProperty("OK");
+    if (returnDate != null) {
+      if (LocalDate.now().plusDays(2).isAfter(returnDate)) {
+        status = new SimpleStringProperty("LATE");
+      } else if (LocalDate.now().plusDays(-4).isAfter(returnDate)) {
+        status = new SimpleStringProperty("SOON");
+      }
+    }
   }
   public Item(String borrowerEmail, LocalDate returnDate, String title, ArrayList<String> reservations, ItemType type, LocalDate dateAddedToLibrary){
     pcs = new PropertyChangeSupport(this);
@@ -40,6 +49,14 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
     this.reservations = reservations;
     this.type = type;
     this.dateAddedToLibrary = dateAddedToLibrary;
+    status = new SimpleStringProperty("OK");
+    if (returnDate != null) {
+      if (LocalDate.now().plusDays(2).isAfter(returnDate)) {
+        status = new SimpleStringProperty("LATE");
+      } else if (LocalDate.now().plusDays(-4).isAfter(returnDate)) {
+        status = new SimpleStringProperty("SOON");
+      }
+    }
   }
   public void addReservation(String email) {
     if (!reservations.contains(email)) {
@@ -113,6 +130,7 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
     LocalDate oldDate = returnDate;
     borrowerEmail = null;
     returnDate = null;
+    status.setValue("OK");
     firePropertyChange("borrowerEmail", oldEmail, null);
     firePropertyChange("returnDate", oldDate, null);
   }
@@ -151,14 +169,7 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
         };
       }
       case "status" -> {
-        if (returnDate != null) {
-          if (LocalDate.now().plusDays(2).isAfter(returnDate)) {
-            return new SimpleStringProperty("LATE");
-          } else if (LocalDate.now().plusDays(-4).isAfter(returnDate)) {
-            return new SimpleStringProperty("SOON");
-          }
-        }
-        return new SimpleStringProperty("OK");
+        return status;
       }
       case "author" -> {
         if (type == ItemType.Book) {
