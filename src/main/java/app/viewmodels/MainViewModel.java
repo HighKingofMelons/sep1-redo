@@ -1,6 +1,5 @@
 package app.viewmodels;
 
-import app.ViewModelFactory;
 import app.models.Item;
 import app.models.interfaces.Main;
 import app.utils.ItemType;
@@ -15,16 +14,14 @@ import java.util.ArrayList;
  */
 public class MainViewModel{
     private Main model;
-    private ViewModelFactory vmf;
     //private final ObservableList<Item> items;
     private final SimpleListProperty<Item> items;
     // for filtering
     private ItemType curFilter; // current filter
     private String filterStr; // current query
 
-    public MainViewModel(Main model, ViewModelFactory vmf) {
+    public MainViewModel(Main model) {
         this.model = model;
-        this.vmf = vmf;
         items = new SimpleListProperty<>();
         curFilter = null;
         filterStr = "";

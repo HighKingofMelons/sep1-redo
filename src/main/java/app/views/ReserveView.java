@@ -9,11 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
-import javax.swing.plaf.basic.BasicButtonUI;
-
-public class ReserveView
-{
-  private ViewHandler viewHandler;
+public class ReserveView {
   private ReserveViewModel reserveViewModel;
 
   @FXML
@@ -22,7 +18,6 @@ public class ReserveView
   private Button addButton;
 
   public void init(ViewHandler vh, ReserveViewModel vm){
-    viewHandler = vh;
     reserveViewModel = vm;
     onType(null);
   }
@@ -31,7 +26,7 @@ public class ReserveView
     addButton.setDisable(emailTextField.getText().length() < 1);
   }
 
-  public void onReserve(ActionEvent actionEvent)
+  public void onReserve(ActionEvent event)
   {
     reserveViewModel.addReservation(emailTextField.getText());
   }

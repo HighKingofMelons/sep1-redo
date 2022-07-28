@@ -19,7 +19,7 @@ public class AddItemViewModel {
      * @param author The author of the book
      * @param ISBN The ISBN for the book
      */
-    public void AddBook(String title, String author, String ISBN) {
+    public void addBook(String title, String author, String ISBN) {
         Book book = new Book(title, author, ISBN);
         model.addItem(book);
     }
@@ -30,7 +30,7 @@ public class AddItemViewModel {
      * @param author The author of the article
      * @param magazine The magazine in which the article is featured in
      */
-    public void AddArticle(String title, String author, String magazine) {
+    public void addArticle(String title, String author, String magazine) {
         Article article = new Article(title, author, magazine);
         model.addItem(article);
     }
@@ -39,7 +39,7 @@ public class AddItemViewModel {
      * Add a new CD to the Inventory
      * @param title The title of the CD
      */
-    public void AddCD(String title) {
+    public void addCD(String title) {
         CD cd = new CD(title);
         model.addItem(cd);
     }
@@ -48,7 +48,7 @@ public class AddItemViewModel {
      * Add a new DVD to the Inventory
      * @param title The title of the DVD
      */
-    public void AddDVD(String title) {
+    public void addDVD(String title) {
         DVD dvd = new DVD(title);
         model.addItem(dvd);
     }

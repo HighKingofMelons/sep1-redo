@@ -4,8 +4,7 @@ import app.utils.ItemType;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Book extends Item
-{
+public class Book extends Item {
   private final String author;
   private final String ISBN;
 

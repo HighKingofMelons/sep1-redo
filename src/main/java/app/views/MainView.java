@@ -6,7 +6,6 @@ import app.utils.ItemType;
 import app.viewmodels.MainViewModel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.SubScene;
@@ -17,15 +16,9 @@ import javafx.scene.input.MouseEvent;
 public class MainView {
     // topbar
     @FXML
-    private Button addButton;
-    @FXML
-    private Button removeButton;
-    @FXML
     private TextField queryField;
     @FXML
     private ChoiceBox<String> filterDropdown;
-    @FXML
-    private Button searchButton;
 
     // items list
     @FXML

@@ -15,27 +15,27 @@ import javafx.scene.text.Text;
 public class AddItemView {
     // type, title & add button
     @FXML
-    ChoiceBox<String> typeChoice;
+    private ChoiceBox<String> typeChoice;
     @FXML
-    Button addButton;
+    private Button addButton;
     @FXML
-    TextField titleField;
+    private TextField titleField;
 
     // input field1
     @FXML
-    HBox field1Box;
+    private HBox field1Box;
     @FXML
-    Text field1Title;
+    private Text field1Title;
     @FXML
-    TextField field1Input;
+    private TextField field1Input;
 
     // input field2
     @FXML
-    HBox field2Box;
+    private HBox field2Box;
     @FXML
-    Text field2Title;
+    private Text field2Title;
     @FXML
-    TextField field2Input;
+    private TextField field2Input;
 
     private AddItemViewModel vm;
 
@@ -117,10 +117,10 @@ public class AddItemView {
     public void onAddButton(MouseEvent event) {
         if (!addButton.isDisabled()) { // only if button is allowed to press
             switch (typeChoice.getValue()) {
-                case "Book" -> vm.AddBook(titleField.getText(), field1Input.getText(), field2Input.getText());
-                case "Article" -> vm.AddArticle(titleField.getText(), field1Input.getText(), field2Input.getText());
-                case "CD" -> vm.AddCD(titleField.getText());
-                case "DVD" -> vm.AddDVD(titleField.getText());
+                case "Book" -> vm.addBook(titleField.getText(), field1Input.getText(), field2Input.getText());
+                case "Article" -> vm.addArticle(titleField.getText(), field1Input.getText(), field2Input.getText());
+                case "CD" -> vm.addCD(titleField.getText());
+                case "DVD" -> vm.addDVD(titleField.getText());
             }
         }
         clearInputs();

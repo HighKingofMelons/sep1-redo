@@ -9,7 +9,6 @@ import javafx.collections.FXCollections;
 
 import java.beans.PropertyChangeEvent;
 import java.time.LocalDate;
-import java.util.Collections;
 
 public class SidebarViewModel {
     private SidebarItem model;
@@ -29,16 +28,6 @@ public class SidebarViewModel {
         reservationList = new SimpleListProperty<>();
 
         setModel(model);
-    }
-
-    public SidebarViewModel () {
-        title = new SimpleStringProperty();
-        borrowerEmail = new SimpleStringProperty();
-        dueDateString = new SimpleStringProperty();
-        isBorrowed = new SimpleBooleanProperty();
-        reservationList = new SimpleListProperty<>();
-
-        setModel(null);
     }
 
     public void setModel(SidebarItem model) {

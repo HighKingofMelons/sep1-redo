@@ -4,7 +4,6 @@ import app.models.interfaces.LoanItem;
 import app.models.interfaces.ReserveItem;
 import app.models.interfaces.SidebarItem;
 import app.utils.ChangeType;
-import app.utils.Exporter;
 import app.utils.ItemType;
 import app.utils.ListChange;
 import javafx.beans.property.SimpleStringProperty;
@@ -15,8 +14,7 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 
 
-public abstract class Item implements SidebarItem, LoanItem, ReserveItem
-{
+public abstract class Item implements SidebarItem, LoanItem, ReserveItem {
   private final PropertyChangeSupport pcs;
   private String borrowerEmail;
   private LocalDate returnDate;
@@ -41,6 +39,7 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
       }
     }
   }
+
   public Item(String borrowerEmail, LocalDate returnDate, String title, ArrayList<String> reservations, ItemType type, LocalDate dateAddedToLibrary){
     pcs = new PropertyChangeSupport(this);
     this.borrowerEmail = borrowerEmail;
@@ -58,19 +57,20 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
       }
     }
   }
+
   public void addReservation(String email) {
     if (!reservations.contains(email)) {
       reservations.add(email);
       firePropertyChange("reservations", null, new ListChange(ChangeType.ADD, email));
     }
   }
+
   public void removeReservation(String email){
     if (reservations.remove(email))
       firePropertyChange("reservations", null, new ListChange(ChangeType.REMOVE, email));
   }
 
-  public ItemType getType()
-  {
+  public ItemType getType() {
     return type;
   }
 
@@ -78,26 +78,22 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
     return title;
   }
 
-  public ArrayList<String> getReservations()
-  {
+  public ArrayList<String> getReservations() {
     if (reservations != null)
       return (ArrayList<String>) reservations.clone();
     else
       return null;
   }
 
-  public LocalDate getDateAddedToLibrary()
-  {
+  public LocalDate getDateAddedToLibrary() {
     return dateAddedToLibrary;
   }
 
-  public LocalDate getReturnDate()
-  {
+  public LocalDate getReturnDate() {
     return returnDate;
   }
 
-  public String getBorrowerEmail()
-  {
+  public String getBorrowerEmail() {
     return borrowerEmail;
   }
 

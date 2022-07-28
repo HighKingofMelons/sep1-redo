@@ -2,10 +2,7 @@ package app.viewmodels;
 
 import app.models.interfaces.LoanItem;
 
-import java.time.LocalDate;
-
-public class LoanOutViewModel
-{
+public class LoanOutViewModel {
   private LoanItem model;
 
   public LoanOutViewModel(LoanItem model){

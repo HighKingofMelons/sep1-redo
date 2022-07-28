@@ -6,7 +6,6 @@ import app.utils.ChangeType;
 import app.utils.Exporter;
 import app.utils.ItemType;
 import app.utils.ListChange;
-import javafx.event.ActionEvent;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

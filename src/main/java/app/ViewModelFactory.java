@@ -1,12 +1,8 @@
 package app;
 
-import app.models.CD;
 import app.models.interfaces.LoanItem;
 import app.models.interfaces.ReserveItem;
 import app.viewmodels.*;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class ViewModelFactory {
     private ModelFactory modelFactory;
@@ -27,7 +23,7 @@ public class ViewModelFactory {
     }
 
     public MainViewModel makeMainViewModel() {
-        return new MainViewModel(modelFactory.getInventory(), this);
+        return new MainViewModel(modelFactory.getInventory());
     }
 
     public AddItemViewModel makeAddItemViewModel() {

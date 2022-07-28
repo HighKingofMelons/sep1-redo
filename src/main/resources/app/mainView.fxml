@@ -21,15 +21,15 @@
                 <HBox alignment="TOP_CENTER" prefHeight="35.0" prefWidth="625.0">
                    <children>
                       <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="10.0" visible="false" />
-                      <Button fx:id="addButton" mnemonicParsing="false" onMouseClicked="#onAddButton" text="ADD" />
+                      <Button mnemonicParsing="false" onMouseClicked="#onAddButton" text="ADD" />
                       <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="10.0" visible="false" />
-                      <Button fx:id="removeButton" mnemonicParsing="false" onMouseClicked="#onRemoveButton" text="REMOVE" />
+                      <Button mnemonicParsing="false" onMouseClicked="#onRemoveButton" text="REMOVE" />
                       <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="10.0" visible="false" />
                       <TextField fx:id="queryField" prefHeight="25.0" prefWidth="277.0" promptText="Query" />
                       <Separator layoutX="133.0" layoutY="10.0" orientation="VERTICAL" prefHeight="35.0" prefWidth="10.0" visible="false" />
                       <ChoiceBox fx:id="filterDropdown" prefHeight="25.0" prefWidth="126.0" />
                       <Separator layoutX="62.0" layoutY="10.0" orientation="VERTICAL" prefHeight="35.0" prefWidth="10.0" visible="false" />
-                      <Button fx:id="searchButton" mnemonicParsing="false" onMouseClicked="#onSearchButton" text="SEARCH" />
+                      <Button mnemonicParsing="false" onMouseClicked="#onSearchButton" text="SEARCH" />
                    </children>
                 </HBox>
              </children>

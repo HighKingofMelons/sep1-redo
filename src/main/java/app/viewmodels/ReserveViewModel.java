@@ -2,8 +2,7 @@ package app.viewmodels;
 
 import app.models.interfaces.ReserveItem;
 
-public class ReserveViewModel
-{
+public class ReserveViewModel {
   private ReserveItem model;
 
   public ReserveViewModel(ReserveItem model){
@@ -11,8 +10,8 @@ public class ReserveViewModel
   }
 
 
-  public void addReservation(String reserveeEmail){
-    model.addReservation(reserveeEmail);
+  public void addReservation(String email){
+    model.addReservation(email);
   }
 
 }

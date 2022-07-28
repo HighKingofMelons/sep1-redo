@@ -53,26 +53,30 @@ public class SidebarView {
         updateButtons();
     }
 
+    @FXML
     public void onLoanButton (ActionEvent event) {
         viewHandler.openLoanOutView((LoanItem) viewModel.getModel());
         updateButtons();
     }
 
+    @FXML
     public void onAddReservationButton (ActionEvent event) {
         viewHandler.openReservationView((ReserveItem) viewModel.getModel());
     }
 
+    @FXML
     public void onReturnButton (ActionEvent event) {
         viewModel.returnItem();
         updateButtons();
     }
 
+    @FXML
     public void onRemoveReservationButton (ActionEvent event) {
         String selectedEmail = reservationListView.getSelectionModel().getSelectedItem();
         viewModel.removeReservation(selectedEmail);
     }
 
-    public void updateButtons () {
+    private void updateButtons () {
         if (viewModel.getModel() != null) {
             if (viewModel.isBorrowedProperty().getValue()) {
                 returnButton.setDisable(false);
