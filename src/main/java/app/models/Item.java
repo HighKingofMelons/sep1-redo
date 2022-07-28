@@ -29,6 +29,7 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
     this.type = type;
     this.title = title;
     dateAddedToLibrary = LocalDate.now();
+    reservations = new ArrayList<>();
   }
   public Item(String borrowerEmail, LocalDate returnDate, String title, ArrayList<String> reservations, ItemType type, LocalDate dateAddedToLibrary){
     pcs = new PropertyChangeSupport(this);
