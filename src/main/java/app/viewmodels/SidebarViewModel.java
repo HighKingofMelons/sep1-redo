@@ -116,7 +116,10 @@ public class SidebarViewModel {
         ListChange listChange = (ListChange) event.getNewValue();
 
         switch (listChange.getChangeType()) {
-            case ADD -> reservationList.add((String) listChange.getChangedObject());
+            case ADD -> {
+                if (!reservationList.contains(listChange.getChangedObject()))
+                    reservationList.add((String) listChange.getChangedObject());
+            }
             case REMOVE -> reservationList.remove((String) listChange.getChangedObject());
         }
     }
