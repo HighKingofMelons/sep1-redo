@@ -23,6 +23,8 @@ public class SidebarView {
     @FXML
     private Button returnButton;
     @FXML
+    private Button addReservationButton;
+    @FXML
     private Button removeReservationButton;
     @FXML
     private ListView<String> reservationListView;
@@ -38,21 +40,22 @@ public class SidebarView {
         borrowerEmailLabel.textProperty().bind(viewModel.borrowerEmailProperty());
         dueDateLabel.textProperty().bind(viewModel.dueDateStringProperty());
 
-        returnButton.disableProperty().bind(viewModel.isBorrowedProperty().not());
-        loanButton.disableProperty().bind(viewModel.isBorrowedProperty());
-
         reservationListView.itemsProperty().bind(viewModel.reservationListProperty());
         removeReservationButton.disableProperty().bind(
                 reservationListView.getSelectionModel().selectedItemProperty().isNull()
         );
+
+        updateButtons();
     }
 
     public void setModel (SidebarItem model) {
         viewModel.setModel(model);
+        updateButtons();
     }
 
     public void onLoanButton (ActionEvent event) {
         viewHandler.openLoanOutView((LoanItem) viewModel.getModel());
+        updateButtons();
     }
 
     public void onAddReservationButton (ActionEvent event) {
@@ -61,10 +64,30 @@ public class SidebarView {
 
     public void onReturnButton (ActionEvent event) {
         viewModel.returnItem();
+        updateButtons();
     }
 
     public void onRemoveReservationButton (ActionEvent event) {
         String selectedEmail = reservationListView.getSelectionModel().getSelectedItem();
         viewModel.removeReservation(selectedEmail);
+    }
+
+    public void updateButtons () {
+        if (viewModel.getModel() != null) {
+            if (viewModel.isBorrowedProperty().getValue()) {
+                returnButton.setDisable(false);
+                loanButton.setDisable(true);
+            }
+            else {
+                returnButton.setDisable(true);
+                loanButton.setDisable(false);
+            }
+            addReservationButton.setDisable(false);
+        }
+        else {
+            returnButton.setDisable(true);
+            loanButton.setDisable(true);
+            addReservationButton.setDisable(true);
+        }
     }
 }
