@@ -11,7 +11,7 @@
     <AnchorPane prefHeight="201.0" prefWidth="399.0">
         <children>
             <TextField fx:id="emailTextField" onKeyTyped="#onType" layoutX="79.0" layoutY="121.0" />
-            <Button fx:id="addButton" layoutX="311.0" layoutY="121.0" mnemonicParsing="false" onAction="#onReserve" text="Button" />
+            <Button fx:id="addButton" layoutX="311.0" layoutY="121.0" mnemonicParsing="false" onAction="#onReserve" text="Reserve" />
             <Text layoutX="72.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write the mail of the reservee" wrappingWidth="221.478515625">
                 <font>
                     <Font size="16.0" />

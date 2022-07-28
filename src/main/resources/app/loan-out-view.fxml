@@ -13,14 +13,14 @@
     <AnchorPane prefHeight="201.0" prefWidth="399.0">
       <children>
          <TextField fx:id="emailTextField" onKeyTyped="#onType" layoutX="79.0" layoutY="121.0" />
-         <Button fx:id="addButton" layoutX="311.0" layoutY="121.0" mnemonicParsing="false" onAction="#onLoanOut" text="Button" />
+         <Button fx:id="addButton" layoutX="311.0" layoutY="121.0" mnemonicParsing="false" onAction="#onLoanOut" text="Loan out" />
          <Text layoutX="60.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write the mail of the loaner" wrappingWidth="221.478515625">
             <font>
                <Font size="16.0" />
             </font>
          </Text>
          <CheckBox fx:id="checkBoxTeacher" layoutX="301.0" layoutY="76.0" mnemonicParsing="false" text="Teacher?" />
-         <Label fx:id="feedBackText" layoutX="140.0" layoutY="76.0" />
-         <Label fx:id="labelFeedback" layoutX="140.0" layoutY="76.0" />
+         <Label layoutX="140.0" layoutY="76.0" />
+         <Label layoutX="140.0" layoutY="76.0" />
       </children></AnchorPane>
 </Scene>
