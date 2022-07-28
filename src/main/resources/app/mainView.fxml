@@ -43,8 +43,8 @@
                       <TableView fx:id="itemsTable" prefHeight="355.0" prefWidth="493.0">
                         <columns>
                             <TableColumn fx:id="statusColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Status" />
-                            <TableColumn fx:id="titleColumn" prefWidth="69.33331298828125" text="Title" />
                             <TableColumn fx:id="typeColumn" prefWidth="52.666656494140625" text="Type" />
+                            <TableColumn fx:id="titleColumn" prefWidth="69.33331298828125" text="Title" />
                             <TableColumn fx:id="authorColumn" prefWidth="91.33334350585938" text="Author" />
                             <TableColumn fx:id="isbnColumn" prefWidth="59.33331298828125" text="ISBN" />
                             <TableColumn fx:id="magazineColumn" prefWidth="115.33331298828125" text="Magazine" />

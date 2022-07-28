@@ -3,12 +3,7 @@ package app;
 import app.models.interfaces.LoanItem;
 import app.models.interfaces.ReserveItem;
 import app.models.interfaces.SidebarItem;
-import app.viewmodels.LoanOutViewModel;
-import app.viewmodels.ReserveViewModel;
-import app.views.LoanOutView;
-import app.views.MainView;
-import app.views.ReserveView;
-import app.views.SidebarView;
+import app.views.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -53,7 +48,7 @@ public class ViewHandler {
     }
 
     public void openAddItemView() {
-        URL fxmlLocation = getClass().getResource("/app/add-item-view.fxml");
+        URL fxmlLocation = getClass().getResource("/app/addItemView.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
 
         Scene addItemScene;
@@ -62,6 +57,9 @@ public class ViewHandler {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        AddItemView addItemView = fxmlLoader.getController();
+        addItemView.init(this, viewModelFactory.makeAddItemViewModel());
 
         Stage addItemStage = new Stage();
         addItemStage.initOwner(mainStage);
