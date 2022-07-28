@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class DVD extends Item
 {
   public DVD(String title){
-    super(ItemType.CD, title);
+    super(ItemType.DVD, title);
   }
   public DVD(String borrowerEmail, LocalDate returnDate, String title, ArrayList<String> reservations, LocalDate dateAddedToLibrary){
     super(borrowerEmail, returnDate, title, reservations, ItemType.CD,
