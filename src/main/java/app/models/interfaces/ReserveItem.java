@@ -1,7 +1,5 @@
 package app.models.interfaces;
 
-
-public interface ReserveItem
-{
-  public void addReservation(String reserveeEmail);
+public interface ReserveItem {
+  void addReservation(String email);
 }

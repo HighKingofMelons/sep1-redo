@@ -68,16 +68,6 @@ public abstract class Item implements SidebarItem, LoanItem, ReserveItem
     if (reservations.remove(email))
       firePropertyChange("reservations", null, new ListChange(ChangeType.REMOVE, email));
   }
-  public boolean isReserving (String email){
-    return reservations.contains(email);
-  }
-
-  public String getFirstReserver(){
-    if (reservations.size() > 0){
-      return reservations.get(0);
-    }
-    return null;
-  }
 
   public ItemType getType()
   {

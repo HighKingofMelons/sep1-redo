@@ -1,7 +1,5 @@
 package app.utils;
 
-import java.lang.reflect.Array;
-
 // When using this just pass it into newValue and put null into oldValue
 public class ListChange {
     private final ChangeType changeType; // Either ChangeType.ADD if the object was added or ChangeType.REMOVE if it was removed
