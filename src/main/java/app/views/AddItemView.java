@@ -57,7 +57,7 @@ public class AddItemView {
     /**
      * Updates visuals (disables/enables inputs based on type)
      */
-    public void updateVisuals() {
+    private void updateVisuals() {
         switch (typeChoice.getValue()) {
             case "Book" -> {
                 field1Box.setDisable(false);
@@ -81,7 +81,7 @@ public class AddItemView {
     /**
      * Disables/enables add button based on choice and provided inputs
      */
-    public void updateAddButton() {
+    private void updateAddButton() {
         if (titleField.getText().length() < 1) {
             // no title provided
             addButton.setDisable(true);
@@ -106,7 +106,7 @@ public class AddItemView {
     /**
      * Clears all inputs except type choice
      */
-    public void clearInputs() {
+    private void clearInputs() {
         titleField.setText("");
         field1Input.setText("");
         field2Input.setText("");
