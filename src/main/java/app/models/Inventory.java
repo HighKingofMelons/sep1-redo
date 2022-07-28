@@ -6,7 +6,9 @@ import app.utils.ChangeType;
 import app.utils.Exporter;
 import app.utils.ItemType;
 import app.utils.ListChange;
+import javafx.event.ActionEvent;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
@@ -27,13 +29,19 @@ public class Inventory implements Main, AddItem {
 
     @Override
     public void removeItem(Item item) {
-        items.remove(item);
-        firePropertyChange("items", null, new ListChange(ChangeType.REMOVE, item));
-        save();
+        if (items.remove(item)) {
+            item.removePropertyChangeListener("reservations", this::onItemChange);
+            item.removePropertyChangeListener("borrowerEmail", this::onItemChange);
+            firePropertyChange("items", null, new ListChange(ChangeType.REMOVE, item));
+            save();
+        }
     }
 
     @Override
     public void addItem(Item item) {
+        item.addPropertyChangeListener("reservations", this::onItemChange);
+        item.addPropertyChangeListener("borrowerEmail", this::onItemChange);
+
         items.add(item);
         firePropertyChange("items", null, new ListChange(ChangeType.ADD, item));
         save();
@@ -86,5 +94,9 @@ public class Inventory implements Main, AddItem {
      */
     private void firePropertyChange (String propertyName, Object oldValue, Object newValue) {
         pcs.firePropertyChange(propertyName, oldValue, newValue);
+    }
+
+    public void onItemChange(PropertyChangeEvent event) {
+        save();
     }
 }
