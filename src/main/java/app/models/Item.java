@@ -4,6 +4,7 @@ import app.models.interfaces.LoanItem;
 import app.models.interfaces.ReserveItem;
 import app.models.interfaces.SidebarItem;
 import app.utils.ChangeType;
+import app.utils.Exporter;
 import app.utils.ItemType;
 import app.utils.ListChange;
 import javafx.beans.property.SimpleStringProperty;

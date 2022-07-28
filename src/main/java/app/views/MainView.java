@@ -74,7 +74,6 @@ public class MainView {
         // binding items updates
         itemsTable.itemsProperty().bind(mvm.getItems());
         tableSelectionUpdate();
-        viewHandler.switchSidebarItem(null);
     }
 
     private void setColumnFactory(TableColumn<Item, String> col, String field) {
@@ -90,15 +89,10 @@ public class MainView {
             @Override
             public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
                 //Check whether item is selected and set value of selected item to Label
-                if (itemsTable.getSelectionModel().getSelectedItem() != null)
-                {
+                if (itemsTable.getSelectionModel().getSelectedItem() != null) {
                     TableView.TableViewSelectionModel selectionModel = itemsTable.getSelectionModel();
-                    ObservableList selectedCells = selectionModel.getSelectedCells();
-                    TablePosition tablePosition = (TablePosition) selectedCells.get(0);
-                    Object val = tablePosition.getTableColumn().getCellData(newValue);
-
                     // updating the sidebar
-                    viewHandler.switchSidebarItem((Item) val);
+                    viewHandler.switchSidebarItem((Item) selectionModel.getSelectedItem());
                 } else {
                     // updating the sidebar
                     viewHandler.switchSidebarItem(null);
