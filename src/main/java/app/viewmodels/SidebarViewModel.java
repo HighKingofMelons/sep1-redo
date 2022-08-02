@@ -39,6 +39,7 @@ public class SidebarViewModel {
         }
 
         if (model == null) {
+            this.model = null;
             isEmpty = true;
             title.setValue("None");
             borrowerEmail.setValue("None");
