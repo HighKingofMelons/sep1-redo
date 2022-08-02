@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Exporter {
-    private static final String saveLocation = "exportedData.xml";
+    private static final String saveLocation = "website/exportedData.xml";
 
     /**
      * Loads saved data from a predefined path

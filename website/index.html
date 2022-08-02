@@ -1,0 +1,115 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The table</title>
+</head>
+<body>
+    <style>
+        table, thead, th, td, tr {
+            border: 1px black solid;
+            border-collapse: collapse;
+            padding: 4px;
+        }
+    </style>
+    <table>
+        <thead>
+            <th>
+                Type
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Author
+            </th>
+            <th>
+                ISBN
+            </th>
+            <th>
+                Magazine
+            </th>
+        </thead>
+        <tbody id="table-body">
+            <tr>
+                <td>
+                    Book
+                </td>
+                <td>
+                    hjksfd
+                </td>
+                <td>
+                    fgjhk
+                </td>
+                <td>
+                    fghjk
+                </td>
+                <td>
+                    N/A
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        function loadSave() {
+            request = new XMLHttpRequest();
+            request.onload = function() {insertTable(this)}
+            request.open("GET", "exportedData.xml");
+            request.send();
+        }
+
+        function insertTable (reply) {
+            let xml = reply.responseXML;
+            const tableTemplate = "<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>";
+            let tablebody = document.getElementById("table-body");
+
+            let books = xml.getElementsByTagName("Book");
+            if (books.length > 0) {
+                for (let i = 0; i < books.length; i++) {
+                    let title = books[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
+                    let author = books[i].getElementsByTagName("Author")[0].childNodes[0].nodeValue;
+                    let isbn = books[i].getElementsByTagName("ISBN")[0].childNodes[0].nodeValue;
+
+                    tablebody.innerHTML += 
+                        "<tr><td>Book</td><td>" + title + "</td><td>" + author + "</td><td>" + isbn + "</td><td>N/A</td></tr>";
+                }
+            }
+
+            let articles = xml.getElementsByTagName("Article");
+            if (articles.length > 0) {
+                for (let i = 0; i < articles.length; i++) {
+                    let title = articles[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
+                    let author = articles[i].getElementsByTagName("Author")[0].childNodes[0].nodeValue;
+                    let magazine = articles[i].getElementsByTagName("Magazine")[0].childNodes[0].nodeValue;
+
+                    tablebody.innerHTML += 
+                        "<tr><td>Article</td><td>" + title + "</td><td>" + author + "</td><td>N/A</td><td>" + magazine + "</td></tr>";
+                }
+            }
+
+            let cds = xml.getElementsByTagName("CD");
+            if (cds.length > 0) {
+                for (let i = 0; i < cds.length; i++) {
+                    let title = cds[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
+
+                    tablebody.innerHTML += 
+                        "<tr><td>CD</td><td>" + title + "</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>";
+                }
+            }
+
+            let dvds = xml.getElementsByTagName("DVD");
+            if (dvds.length > 0) {
+                for (let i = 0; i < dvds.length; i++) {
+                    let title = dvds[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
+
+                    tablebody.innerHTML += 
+                        "<tr><td>DVD</td><td>" + title + "</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>";
+                }
+            }
+        }
+
+        loadSave();
+    </script>
+</body>
+</html>
