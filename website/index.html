@@ -12,6 +12,9 @@
             border-collapse: collapse;
             padding: 4px;
         }
+        button {
+            margin-top: 4px;
+        }
     </style>
     <table>
         <thead>
@@ -51,6 +54,7 @@
             </tr>
         </tbody>
     </table>
+    <button id="reload">Reload</button>
     <script>
         function loadSave() {
             request = new XMLHttpRequest();
@@ -59,10 +63,12 @@
             request.send();
         }
 
+        document.getElementById("reload").onclick = function() {loadSave}
+
         function insertTable (reply) {
             let xml = reply.responseXML;
-            const tableTemplate = "<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>";
             let tablebody = document.getElementById("table-body");
+            tablebody.innerHTML = "";
 
             let books = xml.getElementsByTagName("Book");
             if (books.length > 0) {
