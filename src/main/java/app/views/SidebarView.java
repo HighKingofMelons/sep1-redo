@@ -5,6 +5,7 @@ import app.models.interfaces.LoanItem;
 import app.models.interfaces.ReserveItem;
 import app.models.interfaces.SidebarItem;
 import app.viewmodels.SidebarViewModel;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -45,6 +46,7 @@ public class SidebarView {
                 reservationListView.getSelectionModel().selectedItemProperty().isNull()
         );
 
+        vm.isBorrowedProperty().addListener(this::onIsBorrowedChange);
         updateButtons();
     }
 
@@ -93,5 +95,9 @@ public class SidebarView {
             loanButton.setDisable(true);
             addReservationButton.setDisable(true);
         }
+    }
+
+    private void onIsBorrowedChange (ObservableValue<? extends Boolean> change, boolean oldV, boolean newV) {
+        updateButtons();
     }
 }
