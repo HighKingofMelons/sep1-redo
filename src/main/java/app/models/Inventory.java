@@ -52,16 +52,22 @@ public class Inventory implements Main, AddItem {
 
     @Override
     public ArrayList<Item> searchItems(String query, ItemType filter) {
-        ArrayList<Item> matching = new ArrayList<>();
-        for (Item item: items) {
+        ArrayList<Item> matching = new ArrayList<>(); // 1 operation
+        for (Item item: items) { // n operations (O(1) if n < 2)
             // checking does type match filter or filter is set null (aka all) and title contains query
+            // if statement check: 11n operations
             if ((item.getType() == filter || filter == null) &&
                 (query.length() <= 0 || item.getTitle().toLowerCase().contains(query))) {
-                matching.add(item);
+                matching.add(item); // n operations
             }
         }
 
-        return matching;
+        return matching; // 1 operation
+
+        // In Total:
+        // Best case scenario: bigO(1)
+        // Average case scenario: bigO(n)
+        // Worst case scenario: bigO(n)
     }
 
     /**
