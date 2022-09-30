@@ -1,5 +1,5 @@
 # sep1-redo
-VIA Software Engineering - SEP1 Project
+1st semester project for a re-exam, see more info in the project description. 
 
 ## Running
 - Clone the repo 
